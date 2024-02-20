@@ -344,7 +344,7 @@
   "unknown,branch,jump,call,load,fpload,store,fpstore,
    mtc,mfc,const,arith,logical,shift,slt,imul,idiv,move,fmove,fadd,fmul,
    fmadd,fdiv,fcmp,fcvt,fsqrt,multi,auipc,sfb_alu,nop,ghost,bitmanip,rotate,
-   atomic,condmove,crypto,rdvlenb,rdvl,vsetvl,vlde,vste,vldm,vstm,vlds,vsts,
+   atomic,condmove,crypto,security,rdvlenb,rdvl,vsetvl,vlde,vste,vldm,vstm,vlds,vsts,
    vldux,vldox,vstux,vstox,vldff,vldr,vstr,
    vialu,viwalu,vext,vicalu,vshift,vnshift,vicmp,viminmax,
    vimul,vidiv,viwmul,vimuladd,viwmuladd,vimerge,vimov,
@@ -3140,6 +3140,7 @@
 
 (include "bitmanip.md")
 (include "crypto.md")
+(include "security.md")
 (include "sync.md")
 (include "peephole.md")
 (include "pic.md")

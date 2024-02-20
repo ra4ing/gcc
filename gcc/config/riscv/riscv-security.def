@@ -1,0 +1,4 @@
+RISCV_BUILTIN (sjalr_si, "sjalr", RISCV_BUILTIN_DIRECT, RISCV_SI_FTYPE_SI_SI, security_xosec32),
+RISCV_BUILTIN (sjalr_di, "sjalr", RISCV_BUILTIN_DIRECT, RISCV_DI_FTYPE_DI_DI, security_xosec64),
+RISCV_BUILTIN (sict_si, "sict", RISCV_BUILTIN_DIRECT, RISCV_SI_FTYPE_SI_SI, security_xosec32),
+RISCV_BUILTIN (sict_di, "sict", RISCV_BUILTIN_DIRECT, RISCV_DI_FTYPE_DI_DI, security_xosec64),
