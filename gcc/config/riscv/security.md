@@ -2,28 +2,37 @@
 ;; Assuming these are part of a custom extension or modification.
 (define_c_enum "unspec" [
     ;; sec unspecs
-    UNSPEC_SJALR
     UNSPEC_SICT
+    UNSPEC_SSRA
+    UNSPEC_SSJA
 ])
-
-
-;; Define sjalr instruction
-(define_insn "riscv_sjalr_<mode>"
-  [(set (match_operand:X 0 "register_operand" "+r") ;; Destination register
-        (unspec:X [(match_operand:X 1 "register_operand" "+r") ;; Source register 1
-                    (match_operand:X 2 "register_operand" "+r")] ;; Source register 2
-         UNSPEC_SJALR))]
-  "TARGET_XOSEC"
-  "sjalr\t%0, %1, %2"
-  [(set_attr "type" "security")])
 
 ;; Define sict instruction
 (define_insn "riscv_sict_<mode>"
-  [(set (match_operand:X 0 "register_operand" "+r") ;; Destination register
-        (unspec:X [(match_operand:X 1 "register_operand" "+r") ;; Source register 1
-                    (match_operand:X 2 "register_operand" "+r")] ;; Source register 2
+  [(set (match_operand:X 0 "register_operand" "+r")
+        (unspec:X [(match_operand:X 1 "register_operand" "+r")
+                    (match_operand:X 2 "register_operand" "+r")]
          UNSPEC_SICT))]
   "TARGET_XOSEC"
   "sict\t%0, %1, %2"
   [(set_attr "type" "security")])
 
+;; Define ssra instruction
+(define_insn "riscv_ssra_<mode>"
+  [(set (match_operand:X 0 "register_operand" "+r")
+        (unspec:X [(match_operand:X 1 "register_operand" "+r")
+                    (match_operand:X 2 "register_operand" "+r")]
+         UNSPEC_SSRA))]
+  "TARGET_XOSEC"
+  "ssra\t%0, %1, %2"
+  [(set_attr "type" "security")])
+
+;; Define ssja instruction
+(define_insn "riscv_ssja_<mode>"
+  [(set (match_operand:X 0 "register_operand" "+r")
+        (unspec:X [(match_operand:X 1 "register_operand" "+r")
+                    (match_operand:X 2 "register_operand" "+r")]
+         UNSPEC_SSJA))]
+  "TARGET_XOSEC"
+  "ssja\t%0, %1, %2"
+  [(set_attr "type" "security")])

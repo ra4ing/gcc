@@ -297,7 +297,8 @@ ASM_MISA_SPEC
 	- FRAME_POINTER_REGNUM
    - 1 vl register
    - 1 vtype register
-   - 30 unused registers for future expansion
+   - 2 security register
+   - 28 unused registers for future expansion
    - 32 vector registers  */
 
 #define FIRST_PSEUDO_REGISTER 128
@@ -353,6 +354,10 @@ ASM_MISA_SPEC
 #define FP_REG_FIRST 32
 #define FP_REG_LAST  63
 #define FP_REG_NUM   (FP_REG_LAST - FP_REG_FIRST + 1)
+
+#define SEC_REG_FIRST   68
+#define SEC_REG_LAST    72
+#define SEC_REG_NUM     (SEC_REG_LAST - SEC_REG_LAST + 1) 
 
 #define V_REG_FIRST 96
 #define V_REG_LAST  127
@@ -464,6 +469,7 @@ enum reg_class
   FRAME_REGS,			/* arg pointer and frame pointer */
   VM_REGS,			/* v0.t registers */
   VD_REGS,			/* vector registers except v0.t */
+  SEC_REGS,         /* security registers */
   V_REGS,			/* vector registers */
   ALL_REGS,			/* all registers */
   LIM_REG_CLASSES		/* max value + 1 */
@@ -487,6 +493,7 @@ enum reg_class
   "FRAME_REGS",								\
   "VM_REGS",								\
   "VD_REGS",								\
+  "SEC_REGS",                               \
   "V_REGS",								\
   "ALL_REGS"								\
 }
@@ -507,13 +514,14 @@ enum reg_class
   { 0x00000000, 0x00000000, 0x00000000, 0x00000000 },	/* NO_REGS */		\
   { 0xf003fcc0, 0x00000000, 0x00000000, 0x00000000 },	/* SIBCALL_REGS */	\
   { 0xffffffc0, 0x00000000, 0x00000000, 0x00000000 },	/* JALR_REGS */		\
-  { 0xffffffff, 0x00000000, 0x00000000, 0x00000000 },	/* GR_REGS */		\
+  { 0xffffffff, 0x00000000, 0x000001f0, 0x00000000 },	/* GR_REGS */		\
   { 0x00000000, 0xffffffff, 0x00000000, 0x00000000 },	/* FP_REGS */		\
   { 0x00000000, 0x00000000, 0x00000003, 0x00000000 },	/* FRAME_REGS */	\
   { 0x00000000, 0x00000000, 0x00000000, 0x00000001 },	/* V0_REGS */		\
   { 0x00000000, 0x00000000, 0x00000000, 0xfffffffe },	/* VNoV0_REGS */	\
+  { 0x00000000, 0x00000000, 0x000001f0, 0x00000000 },   /* SEC_REGS */      \
   { 0x00000000, 0x00000000, 0x00000000, 0xffffffff },	/* V_REGS */		\
-  { 0xffffffff, 0xffffffff, 0x00000003, 0xffffffff }	/* ALL_REGS */		\
+  { 0xffffffff, 0xffffffff, 0x000001f3, 0xffffffff }	/* ALL_REGS */		\
 }
 
 /* A C expression whose value is a register class containing hard
@@ -547,7 +555,7 @@ enum reg_class
   /* Call-saved GPRs.  */						\
   8, 9, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27,	       			\
   /* GPRs that can never be exposed to the register allocator.  */	\
-  0, 2, 3, 4,								\
+  0, 2, 3, 4, 68, 69, 70, 71, 72, 								\
   /* Call-clobbered FPRs.  */						\
   47, 46, 45, 44, 43, 42, 32, 33, 34, 35, 36, 37, 38, 39, 48, 49,	\
   60, 61, 62, 63,							\
@@ -840,8 +848,8 @@ typedef struct {
   "fs0", "fs1", "fa0", "fa1", "fa2", "fa3", "fa4", "fa5",	\
   "fa6", "fa7", "fs2", "fs3", "fs4", "fs5", "fs6", "fs7",	\
   "fs8", "fs9", "fs10","fs11","ft8", "ft9", "ft10","ft11",	\
-  "arg", "frame", "vl", "vtype", "N/A", "N/A", "N/A", "N/A",    \
-  "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A",	\
+  "arg", "frame", "vl", "vtype", "reta", "jmpa", "ica", "ic",    \
+  "err", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A",	\
   "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A",	\
   "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A",	\
   "v0",  "v1",  "v2",  "v3",  "v4",  "v5",  "v6",  "v7",	\
