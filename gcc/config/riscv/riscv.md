@@ -3140,7 +3140,6 @@
 
 (include "bitmanip.md")
 (include "crypto.md")
-(include "security.md")
 (include "sync.md")
 (include "peephole.md")
 (include "pic.md")

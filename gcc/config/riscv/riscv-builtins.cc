@@ -92,8 +92,8 @@ struct riscv_builtin_description {
   unsigned int (*avail) (void);
 };
 
-AVAIL(security_xosec32, TARGET_XOSEC && !TARGET_64BIT)
-AVAIL(security_xosec64, TARGET_XOSEC && TARGET_64BIT)
+// AVAIL(security_xsec32, TARGET_XSEC && !TARGET_64BIT)
+// AVAIL(security_xsec64, TARGET_XSEC && TARGET_64BIT)
 AVAIL (hard_float, TARGET_HARD_FLOAT || TARGET_ZFINX)
 AVAIL (clean32, TARGET_ZICBOM && !TARGET_64BIT)
 AVAIL (clean64, TARGET_ZICBOM && TARGET_64BIT)
@@ -176,7 +176,7 @@ AVAIL (always,     (!0))
 static const struct riscv_builtin_description riscv_builtins[] = {
   #include "riscv-cmo.def"
   #include "riscv-scalar-crypto.def"
-  #include "riscv-security.def"
+  // #include "riscv-security.def"
 
   DIRECT_BUILTIN (frflags, RISCV_USI_FTYPE, hard_float),
   DIRECT_NO_TARGET_BUILTIN (fsflags, RISCV_VOID_FTYPE_USI, hard_float),

@@ -105,8 +105,8 @@ enum riscv_multilib_select_kind {
 #define TARGET_ZHINX    ((riscv_zinx_subext & MASK_ZHINX) != 0)
 #define TARGET_ZHINXMIN ((riscv_zinx_subext & MASK_ZHINXMIN) != 0)
 
-#define MASK_XOSEC    (1 << 0)
-#define TARGET_XOSEC  ((riscv_xo_subext & MASK_XOSEC) != 0)
+#define MASK_XSEC    (1 << 0)
+#define TARGET_XSEC  ((riscv_xs_subext & MASK_XSEC) != 0)
 
 #define MASK_ZBKB     (1 << 0)
 #define MASK_ZBKC     (1 << 1)

@@ -13,7 +13,7 @@
         (unspec:X [(match_operand:X 1 "register_operand" "+r")
                     (match_operand:X 2 "register_operand" "+r")]
          UNSPEC_SICT))]
-  "TARGET_XOSEC"
+  "TARGET_XSEC"
   "sict\t%0, %1, %2"
   [(set_attr "type" "security")])
 
@@ -23,7 +23,7 @@
         (unspec:X [(match_operand:X 1 "register_operand" "+r")
                     (match_operand:X 2 "register_operand" "+r")]
          UNSPEC_SSRA))]
-  "TARGET_XOSEC"
+  "TARGET_XSEC"
   "ssra\t%0, %1, %2"
   [(set_attr "type" "security")])
 
@@ -33,6 +33,6 @@
         (unspec:X [(match_operand:X 1 "register_operand" "+r")
                     (match_operand:X 2 "register_operand" "+r")]
          UNSPEC_SSJA))]
-  "TARGET_XOSEC"
+  "TARGET_XSEC"
   "ssja\t%0, %1, %2"
   [(set_attr "type" "security")])
